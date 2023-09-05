@@ -59,7 +59,7 @@ export async function processFolder(user) {
     let files = []
     try { // try to get sha, might not be git folder i.e. streams
         // Get the SHA of the current commit
-        current_sha = execSync(`git --git-dir=${user_path}/.git rev-parse @`)
+        current_sha = execSync(`git --git-dir=${user_path}/.git rev-parse HEAD`)
 
     } catch (e) {
         console.log(e.message)
@@ -69,7 +69,7 @@ export async function processFolder(user) {
     if (last_sha) {
 
         // Get the file names that changed between the last stored SHA and the current commit
-        let output = execSync(`git --git-dir=${user_path}/.git diff --name-only ${last_sha} @`).toString()
+        let output = execSync(`git --git-dir=${user_path}/.git diff --name-only ${last_sha} HEAD`).toString()
         files = output.split("\n").filter((name) => name != "")
 
 
