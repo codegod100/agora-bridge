@@ -4,4 +4,4 @@ WORKDIR /workspace/sql-import
 COPY sql-import/package.json package.json
 RUN npm install
 COPY sql-import .
-CMD ["node",""]
+CMD ["/workspace/sql-import/run.sh"]
